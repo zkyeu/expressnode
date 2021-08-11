@@ -7,3 +7,6 @@
  * @FilePath: /expressnode/README.MD
 -->
 # node服务
+
+controllers：一个接口一个文件
+modles：

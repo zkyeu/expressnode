@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-10 10:21:33
- * @LastEditTime: 2021-08-10 16:47:25
+ * @LastEditTime: 2021-08-11 17:07:58
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /expressnode/routes/index.js
@@ -9,14 +9,22 @@
 var express = require('express');
 var router = express.Router();
 const userController = require('../controllers/user');
+const articleController = require('../controllers/article');
+const insertController = require('../controllers/insertArticle');
+const deleteController = require('../controllers/deleteitem');
+const updateController = require('../controllers/updateitem');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express123' });
 });
 
-// 获取用户信息
+// 获取信息
 router.get('/get/user', userController.showUser);
+router.get('/get/article', articleController.showArticle);
 
-
+// 编辑
+router.post('/get/createarticle', insertController.handleItem);
+router.post('/get/deletearticle', deleteController.handleItem);
+router.post('/get/updatearticle', updateController.handleItem);
 module.exports = router;
