@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-10 10:21:33
- * @LastEditTime: 2021-08-15 00:28:03
+ * @LastEditTime: 2021-08-17 08:50:59
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /expressnode/routes/index.js
@@ -11,7 +11,7 @@ var router = express.Router();
 const userController = require('../controllers/user');
 const listController = require('../controllers/list');
 const articleController = require('../controllers/article');
-const insertController = require('../controllers/insertArticle');
+const insertController = require('../controllers/insertitem');
 const deleteController = require('../controllers/deleteitem');
 const updateController = require('../controllers/updateitem');
 

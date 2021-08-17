@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-10 15:55:34
- * @LastEditTime: 2021-08-11 17:35:55
+ * @LastEditTime: 2021-08-17 08:48:53
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /expressnode/controllers/user.js
@@ -12,7 +12,7 @@ const handleArticle = require('../models/article.js');
 const updateController = {
   // showUser 获取用户数据并返回到页面
   handleItem: async (req,res,next) => {
-    const {id} = req.body;
+    const { id } = req.body;
     // console.log(id);
     // return
     // 校验insert信息
