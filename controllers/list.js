@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-10 15:55:34
- * @LastEditTime: 2021-08-17 09:53:52
+ * @LastEditTime: 2021-08-17 19:45:42
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /expressnode/controllers/user.js
@@ -13,7 +13,6 @@ const listController = {
   // showUser 获取用户数据并返回到页面
   showArticle: async function(req,res,next){
     try{
-      console.log('123');
       let articleData = await Article
       .all()
       .orderBy([{
@@ -30,7 +29,7 @@ const listController = {
             },
             {
               name: '编辑',
-              type: 'editor',
+              type: 'edit',
             },
             {
               name: '删除',

@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-10 15:55:34
- * @LastEditTime: 2021-08-17 08:48:53
+ * @LastEditTime: 2021-08-17 20:58:17
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /expressnode/controllers/user.js
@@ -21,7 +21,7 @@ const updateController = {
       await handleArticle.update(id, req.body);
       res.json({
         errNo: 0,
-        message: "添加成功"
+        message: "编辑成功～"
       })
     } catch(e) {
       res.json({ errNo: -1, message: "操作失败", data: e })
