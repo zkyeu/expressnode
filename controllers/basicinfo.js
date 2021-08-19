@@ -1,24 +1,35 @@
 /*
  * @Author: your name
  * @Date: 2021-08-10 15:55:34
- * @LastEditTime: 2021-08-17 20:58:17
+ * @LastEditTime: 2021-08-19 19:38:11
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /expressnode/controllers/user.js
  */
 // 引用用户模版数据
-const handleArticle = require('../models/article.js');
+const item = require('../models/basicinfo.js');
 
-const updateController = {
+const baseController = {
   // showUser 获取用户数据并返回到页面
-  handleItem: async (req,res,next) => {
+  getinfo: async function(req,res,next){
+    try{
+      let objList = await item.all().first();
+      res.json({
+        errNo: 0,
+        message: "获取成功",
+        data: objList
+      })
+    }catch(e){
+      res.json({ errNo: 1, message: "操作失败", data: e })
+    }
+  },
+
+  // 更新分类信息
+  update: async (req,res,next) => {
     const { id } = req.body;
-    // console.log(id);
-    // return
-    // 校验insert信息
     // if (!obj.typename) return res.json({ errNo: -3, message: "缺少参数信息～" });
     try{
-      await handleArticle.update(id, req.body);
+      await item.update(id, req.body);
       res.json({
         errNo: 0,
         message: "编辑成功～"
@@ -29,4 +40,4 @@ const updateController = {
   },
 }
 
-module.exports = updateController;
+module.exports = baseController;

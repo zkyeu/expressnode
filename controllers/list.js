@@ -1,25 +1,25 @@
 /*
  * @Author: your name
  * @Date: 2021-08-10 15:55:34
- * @LastEditTime: 2021-08-17 19:45:42
+ * @LastEditTime: 2021-08-19 20:26:13
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /expressnode/controllers/user.js
  */
 // 引用用户模版数据
-const Article = require('../models/article.js');
+const item = require('../models/article.js');
 
 const listController = {
   // showUser 获取用户数据并返回到页面
-  showArticle: async function(req,res,next){
+  list: async function(req,res,next){
     try{
-      let articleData = await Article
+      let list = await item
       .all()
       .orderBy([{
         column: 'createtime',
         order: 'desc'
       }]);
-      let obj = articleData.map((item,index) => {
+      let obj = list.map((item,index) => {
         return {
           ...item,
           operate: [
