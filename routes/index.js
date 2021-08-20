@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-10 10:21:33
- * @LastEditTime: 2021-08-19 20:26:25
+ * @LastEditTime: 2021-08-20 17:00:24
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /expressnode/routes/index.js
@@ -24,6 +24,7 @@ router.get('/get/user', userController.showUser);
 router.get('/get/article', articleController.getItem);
 router.get('/get/articlelist', listController.list);
 router.get('/get/gettypes', typeController.getType);
+router.get('/get/getdiytypes', typeController.getDiyType);
 router.get('/get/getinfo', baseinfoController.getinfo);
 
 // 编辑

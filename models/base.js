@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-10 15:49:20
- * @LastEditTime: 2021-08-15 01:05:16
+ * @LastEditTime: 2021-08-20 17:41:40
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /expressnode/models/base.js
@@ -20,7 +20,14 @@ class Base{
 
   //按需查找
   find (id) {
-    return knex(this.table).where({id}).first();
+    return knex(this.table).where({ id }).first();
+  }
+
+  selects (parmas) {
+    return knex(this.table)
+    .column(parmas)
+    .select()
+    .where({'show':'1'});
   }
 
   // 新增
