@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-10 15:49:20
- * @LastEditTime: 2021-08-20 17:41:40
+ * @LastEditTime: 2021-08-21 03:48:23
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /expressnode/models/base.js
@@ -17,17 +17,22 @@ class Base{
   all () {
       return knex(this.table).select().limit(10);
   }
+  // select * from `article` left join `articlebody` on `article`.`contentid` = `articlebody`.`aid`
+  // 拼接查找
+  leftJoinFind(id) {
+    return knex(this.table).leftJoin('articlebody','article.contentid', 'articlebody.aid').where({ id }).first();
+  }
 
   //按需查找
   find (id) {
     return knex(this.table).where({ id }).first();
   }
 
-  selects (parmas) {
+  selects (parmas,condition) {
     return knex(this.table)
     .column(parmas)
     .select()
-    .where({'show':'1'});
+    .where(condition);
   }
 
   // 新增
@@ -37,7 +42,7 @@ class Base{
 
   // 更改
   update (id, params){
-    return knex(this.table).where({'id': id}).update(params);
+    return knex(this.table).where(id).update(params);
   }
 
   // 删除
