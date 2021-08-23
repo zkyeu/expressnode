@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-10 10:21:33
- * @LastEditTime: 2021-08-20 17:00:24
+ * @LastEditTime: 2021-08-23 17:49:52
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /expressnode/routes/index.js
@@ -20,7 +20,7 @@ router.get('/', function(req, res, next) {
 });
 
 // 获取信息
-router.get('/get/user', userController.showUser);
+router.get('/admins/getuser', userController.getadminItem);
 router.get('/get/article', articleController.getItem);
 router.get('/get/articlelist', listController.list);
 router.get('/get/gettypes', typeController.getType);
@@ -32,6 +32,9 @@ router.post('/get/createarticle', articleController.insertItem);
 router.post('/get/deletearticle', articleController.deleteItem);
 router.post('/get/updatearticle', articleController.updateItem);
 router.post('/get/addtypes', typeController.insertType);
+router.post('/get/addadminuser', userController.insertItem);
+router.post('/get/deleteuser', userController.deleteItem);
+router.post('/get/updateuser', userController.updateItem);
 router.post('/get/deletetype', typeController.deleteType);
 router.post('/get/updatetype', typeController.updateItem);
 router.post('/get/updateinfo', baseinfoController.update);

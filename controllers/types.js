@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-10 15:55:34
- * @LastEditTime: 2021-08-21 16:56:48
+ * @LastEditTime: 2021-08-21 19:20:44
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /expressnode/controllers/user.js
@@ -95,9 +95,10 @@ const typeController = {
   // 更新分类信息
   updateItem: async (req,res,next) => {
     const { id } = req.body;
+    console.log(req.body);
     // if (!obj.typename) return res.json({ errNo: -3, message: "缺少参数信息～" });
     try{
-      await item.update(id, req.body);
+      await item.update({'id': id}, req.body);
       res.json({
         errNo: 0,
         message: "编辑成功～"

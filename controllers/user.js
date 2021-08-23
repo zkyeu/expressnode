@@ -1,19 +1,19 @@
 /*
  * @Author: your name
  * @Date: 2021-08-10 15:55:34
- * @LastEditTime: 2021-08-10 20:30:40
+ * @LastEditTime: 2021-08-23 17:56:18
  * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
+ * @Description: In Item Settings Edit
  * @FilePath: /expressnode/controllers/user.js
  */
 // 引用用户模版数据
-const User = require('../models/user.js');
+const Item = require('../models/user.js');
 
 const userController = {
-  // showUser 获取用户数据并返回到页面
-  showUser: async function(req,res,next){
+  // showItem 获取用户数据并返回到页面
+  showItem: async function(req,res,next){
     try{
-      let userData = await User.all()
+      let userData = await Item.all()
       res.json({
         errNo: 0,
         message: "操作成功",
@@ -21,6 +21,77 @@ const userController = {
       })
     }catch(e){
       res.json({ errNo: 1, message: "操作失败", data: e })
+    }
+  },
+  getadminItem: async function(req,res,next){
+    try{
+      let objList = await Item
+      .selects(['id', 'username','realname', 'phone', 'email', 'registetime'],{})
+      .orderBy([{
+        column: 'registetime',
+        order: 'desc'
+      }]);
+      res.json({
+        errNo: 0,
+        message: "获取成功",
+        data: objList.map((item,index) => {
+          return {
+            ...item,
+            operate: [
+              {
+                name: '查看',
+                type: 'view',
+              },
+              {
+                name: '编辑',
+                type: 'edit',
+              },
+              {
+                name: '删除',
+                type: 'delete',
+              }
+            ]
+          }
+        })
+      })
+    }catch(e){
+      res.json({ errNo: 1, message: "操作失败", data: e })
+    }
+  },
+  insertItem: async (req,res,next) => {
+    try{
+      await Item.insert(req.body);
+      return res.json({
+        errNo: 0,
+        message: "添加成功"
+      });
+    } catch(e) {
+      res.json({ errNo: -1, message: "操作失败", data: e })
+    }
+  },
+  deleteItem: async (req,res,next) => {
+    let obj = req.body;
+    try{
+      await Item.delete(obj.id);
+      res.json({
+        errNo: 0,
+        message: "删除成功"
+      })
+    }catch(e){
+      res.json({ errNo: -1, message: "操作失败", data: e })
+    }
+  },
+    // 更新分类信息
+  updateItem: async (req,res,next) => {
+    const { id } = req.body;
+    try{
+      await Item.update({'id': id}, req.body);
+      res.json({
+        errNo: 0,
+        message: "编辑成功～"
+      })
+    } catch(e) {
+      res.json({ errNo: -1, message: "操作失败", data: e })
     }
   },
 }
