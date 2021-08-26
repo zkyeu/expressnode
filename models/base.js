@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-10 15:49:20
- * @LastEditTime: 2021-08-21 03:48:23
+ * @LastEditTime: 2021-08-26 20:04:28
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /expressnode/models/base.js
@@ -28,11 +28,12 @@ class Base{
     return knex(this.table).where({ id }).first();
   }
 
-  selects (parmas,condition) {
+  selects (parmas,condition, pages) {
     return knex(this.table)
     .column(parmas)
     .select()
-    .where(condition);
+    .where(condition)
+    .limit(pages.rn).offset((pages.rn * (pages.pn - 1)));
   }
 
   // 新增
@@ -49,7 +50,10 @@ class Base{
   delete (id){
     return knex(this.table).where('id', '=', id).del();
   }
-
+  // 计数
+  count(parmas, condition) {
+    return knex(this.table).count(parmas).where(condition);
+  }
 }
 
 module.exports = Base;

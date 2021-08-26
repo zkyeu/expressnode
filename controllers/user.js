@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-10 15:55:34
- * @LastEditTime: 2021-08-23 17:56:18
+ * @LastEditTime: 2021-08-24 11:19:48
  * @LastEditors: Please set LastEditors
  * @Description: In Item Settings Edit
  * @FilePath: /expressnode/controllers/user.js
@@ -26,7 +26,8 @@ const userController = {
   getadminItem: async function(req,res,next){
     try{
       let objList = await Item
-      .selects(['id', 'username','realname', 'phone', 'email', 'registetime'],{})
+      .selects(['id', 'userid','realname', 'phone', 'email', 'registetime'],{})
+      .where({'delete': 0})
       .orderBy([{
         column: 'registetime',
         order: 'desc'
@@ -69,6 +70,8 @@ const userController = {
       res.json({ errNo: -1, message: "操作失败", data: e })
     }
   },
+  
+  // 物理删除
   deleteItem: async (req,res,next) => {
     let obj = req.body;
     try{
@@ -78,6 +81,19 @@ const userController = {
         message: "删除成功"
       })
     }catch(e){
+      res.json({ errNo: -1, message: "操作失败", data: e })
+    }
+  },
+  // 逻辑删除
+  setItem: async (req,res,next) => {
+    const { id } = req.body;
+    try{
+      await Item.update({'id': id}, {'delete': 1});
+      res.json({
+        errNo: 0,
+        message: "删除成功～"
+      })
+    } catch(e) {
       res.json({ errNo: -1, message: "操作失败", data: e })
     }
   },
