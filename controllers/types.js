@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-10 15:55:34
- * @LastEditTime: 2021-08-21 19:20:44
+ * @LastEditTime: 2021-08-27 08:52:10
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /expressnode/controllers/user.js
@@ -50,7 +50,7 @@ const typeController = {
   getDiyType: async function(req,res,next){
     try{
       let objList = await item
-      .selects(['show', 'id', 'typename', 'aliasname'], {'show':'1'})
+      .selects(['id', 'typename', 'aliasname'], {'show':'1'},{})
       .orderBy([{
         column: 'typesort',
         order: 'asc'
