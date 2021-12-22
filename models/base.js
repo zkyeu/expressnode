@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-10 15:49:20
- * @LastEditTime: 2021-08-26 20:04:28
+ * @LastEditTime: 2021-12-23 01:09:19
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /expressnode/models/base.js
@@ -20,7 +20,7 @@ class Base{
   // select * from `article` left join `articlebody` on `article`.`contentid` = `articlebody`.`aid`
   // 拼接查找
   leftJoinFind(id) {
-    return knex(this.table).leftJoin('articlebody','article.contentid', 'articlebody.aid').where({ id }).first();
+    return knex(this.table).leftJoin('tbl_article_detail','tbl_article.article_id', 'tbl_article_detail.aid').where({ id }).first();
   }
 
   //按需查找

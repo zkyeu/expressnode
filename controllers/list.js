@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-10 15:55:34
- * @LastEditTime: 2021-08-26 20:06:39
+ * @LastEditTime: 2021-12-23 01:24:50
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /expressnode/controllers/user.js
@@ -13,17 +13,16 @@ const listController = {
   // showUser 获取用户数据并返回到页面
   list: async function(req,res,next){
     let {pn, rn} = req.body;
-    console.log(pn, rn,req.body);
+    // console.log(pn, rn,req.body);
     try{
       let list = await item
-      .selects(['*'], {'delete': 0}, {pn:pn, rn:rn })
+      .selects(['*'], {'deleted': 0}, {pn:pn, rn:rn })
       .orderBy([{
-        column: 'createtime',
+        column: 'create_time',
         order: 'desc'
       }]);
 
-      let lists = await item.count('title as cnt',{'delete': 0}).first();
-      // console.log(lists);
+      let lists = await item.count('title as cnt',{'deleted': 0}).first();
       let obj = list.map((item,index) => {
         return {
           ...item,

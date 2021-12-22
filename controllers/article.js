@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-10 15:55:34
- * @LastEditTime: 2021-08-21 04:29:20
+ * @LastEditTime: 2021-12-23 01:19:09
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /expressnode/controllers/user.js
@@ -15,7 +15,7 @@ const articleController = {
   getItem: async (req,res,next) => {
     try{
       let articleData = await item.leftJoinFind(req.query.id);
-
+      // console.log(articleData);
       res.json({
         errNo: 0,
         message: "操作成功",
@@ -25,6 +25,7 @@ const articleController = {
       res.json({ errNo: -1, message: "操作失败", data: e })
     }
   },
+  
   deleteItem: async (req,res,next) => {
     let obj = req.body;
     // console.log(obj.id);
@@ -45,7 +46,7 @@ const articleController = {
         try{
           let data = req.body
           delete data.body;
-          data.contentid = insertCon[0];
+          data.article_id = insertCon[0];
           await item.insert(data);
           return res.json({
             errNo: 0,
@@ -63,16 +64,15 @@ const articleController = {
 
   },
   updateItem: async (req,res,next) => {
-    const { id, contentid, body } = req.body;
+    const { id, article_id, body } = req.body;
     try {
-      let count = await itemBody.update({aid: contentid}, { body: body });
+      let count = await itemBody.update({aid: article_id}, { body: body });
       if (count) {
-        console.log(count);
         try{
           let data = req.body
           delete data.body;
           delete data.id;
-          delete data.contentid;
+          delete data.article_id;
           await item.update({id: id}, data);
           return res.json({
             errNo: 0,
