@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-10 10:21:33
- * @LastEditTime: 2021-08-26 20:12:34
+ * @LastEditTime: 2021-12-23 16:04:53
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /expressnode/routes/index.js
@@ -20,24 +20,24 @@ router.get('/', function(req, res, next) {
 });
 
 // 获取信息
-router.get('/admins/getuser', userController.getadminItem);
-router.get('/get/article', articleController.getItem);
-router.post('/get/articlelist', listController.list);
-router.get('/get/gettypes', typeController.getType);
-router.get('/get/getdiytypes', typeController.getDiyType);
-router.get('/get/getinfo', baseinfoController.getinfo);
+router.get('/apiv1/admins/getuser', userController.getadminItem);
+router.get('/apiv1/get/article', articleController.getItem);
+router.post('/apiv1/get/articlelist', listController.list);
+router.get('/apiv1/get/gettypes', typeController.getType);
+router.get('/apiv1/get/getdiytypes', typeController.getDiyType);
+router.get('/apiv1/get/getinfo', baseinfoController.getinfo);
 
 // 编辑
-router.post('/get/createarticle', articleController.insertItem);
-router.post('/get/deletearticle', articleController.deleteItem);
-router.post('/get/updatearticle', articleController.updateItem);
-router.post('/get/addtypes', typeController.insertType);
-router.post('/get/addadminuser', userController.insertItem);
-router.post('/get/deleteuser', userController.setItem);
-// router.post('/get/deleteuser', userController.deleteItem);
-router.post('/get/updateuser', userController.updateItem);
-router.post('/get/deletetype', typeController.deleteType);
-router.post('/get/updatetype', typeController.updateItem);
-router.post('/get/updateinfo', baseinfoController.update);
+router.post('/apiv1/get/createarticle', articleController.insertItem);
+router.post('/apiv1/get/deletearticle', articleController.deleteItem);
+router.post('/apiv1/get/updatearticle', articleController.updateItem);
+router.post('/apiv1/get/addtypes', typeController.insertType);
+router.post('/apiv1/get/addadminuser', userController.insertItem);
+router.post('/apiv1/get/deleteuser', userController.setItem);
+// router.post('/apiv1/get/deleteuser', userController.deleteItem);
+router.post('/apiv1/get/updateuser', userController.updateItem);
+router.post('/apiv1/get/deletetype', typeController.deleteType);
+router.post('/apiv1/get/updatetype', typeController.updateItem);
+router.post('/apiv1/get/updateinfo', baseinfoController.update);
 
 module.exports = router;
