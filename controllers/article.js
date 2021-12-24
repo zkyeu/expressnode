@@ -6,6 +6,7 @@
  * @Description: In User Settings Edit
  * @FilePath: /expressnode/controllers/user.js
  */
+const moment = require('moment'); 
 // 引用用户模版数据
 const item = require('../models/article.js');
 const itemBody = require('../models/articlebody.js');
@@ -46,7 +47,8 @@ const articleController = {
         try{
           let data = req.body
           delete data.body;
-          data.article_id = insertCon[0];
+          data['create_time'] = moment().format('YYYY-MM-DD HH:mm:ss')
+          data['article_id'] = insertCon[0];
           await item.insert(data);
           return res.json({
             errNo: 0,

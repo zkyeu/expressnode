@@ -6,6 +6,7 @@
  * @Description: In User Settings Edit
  * @FilePath: /expressnode/controllers/user.js
  */
+const moment = require('moment'); 
 // 引用用户模版数据
 const item = require('../models/types.js');
 
@@ -14,7 +15,7 @@ const typeController = {
   getType: async function(req,res,next){
     try{
       let objList = await item
-      .selects(['id', 'typename', 'aliasname', 'typesort'], {'show':1},{})
+      .selects(['id', 'typename', 'aliasname', 'typesort', 'show'], {'show':1},{})
       .orderBy([{
         column: 'typesort',
         order: 'asc'
@@ -69,7 +70,7 @@ const typeController = {
     let obj = req.body;
     if (!obj.typename) return res.json({ errNo: -1, message: "缺少参数信息～" });
     try{
-      await item.insert(req.body);
+      await item.insert({...req.body,'create_time': moment().format('YYYY-MM-DD HH:mm:ss')});
       return res.json({
         errNo: 0,
         message: "添加成功"

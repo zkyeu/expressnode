@@ -49,11 +49,12 @@ class Base{
     // console.log(id, params);
     // delete params.id;
     // console.log(this.table);
-    if (this.table ==='tbl_article_detail'  || this.table ==='tbl_article') {
-      return knex(this.table).where(id).update(params); // 文章成功
-    } else {
-      return knex(this.table).where('id', '=', id).update(params); // 分类成功
-    }
+     return knex(this.table).where(id).update(params);
+    // if (this.table ==='tbl_article_detail'  || this.table ==='tbl_article') {
+    //   return knex(this.table).where(id).update(params); // 文章成功
+    // } else {
+    //   return knex(this.table).where(id).update(params); // 分类成功
+    // }
   }
 
   // 删除
