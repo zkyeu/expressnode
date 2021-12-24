@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-10 15:55:34
- * @LastEditTime: 2021-12-23 16:00:40
+ * @LastEditTime: 2021-12-24 11:11:01
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /expressnode/controllers/user.js
@@ -12,7 +12,6 @@ const listController = {
   // showUser 获取用户数据并返回到页面
   list: async function(req,res,next){
     let {pn, rn} = req.body;
-    console.log('111');
     // console.log(pn, rn,req.body);
     try{
       let list = await item

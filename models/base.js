@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-10 15:49:20
- * @LastEditTime: 2021-12-23 01:09:19
+ * @LastEditTime: 2021-12-24 11:18:25
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /expressnode/models/base.js
@@ -43,7 +43,14 @@ class Base{
 
   // 更改
   update (id, params){
-    return knex(this.table).where(id).update(params);
+    // console.log(id, params);
+    // delete params.id;
+    // console.log(this.table);
+    if (this.table ==='tbl_article_detail'  || this.table ==='tbl_article') {
+      return knex(this.table).where(id).update(params); // 文章成功
+    } else {
+      return knex(this.table).where('id', '=', id).update(params); // 分类成功
+    }
   }
 
   // 删除
