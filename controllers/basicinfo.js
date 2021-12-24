@@ -1,14 +1,13 @@
 /*
  * @Author: your name
  * @Date: 2021-08-10 15:55:34
- * @LastEditTime: 2021-08-19 19:38:11
+ * @LastEditTime: 2021-12-24 11:18:55
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /expressnode/controllers/user.js
  */
 // 引用用户模版数据
 const item = require('../models/basicinfo.js');
-
 const baseController = {
   // showUser 获取用户数据并返回到页面
   getinfo: async function(req,res,next){
