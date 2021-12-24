@@ -14,7 +14,7 @@ const typeController = {
   getType: async function(req,res,next){
     try{
       let objList = await item
-      .all()
+      .selects(['id', 'typename', 'aliasname', 'typesort'], {'show':1},{})
       .orderBy([{
         column: 'typesort',
         order: 'asc'
@@ -50,7 +50,7 @@ const typeController = {
   getDiyType: async function(req,res,next){
     try{
       let objList = await item
-      .selects(['id', 'typename', 'aliasname'], {'show':'1'},{})
+      .selects(['id', 'typename', 'aliasname'], {'show':1},{})
       .orderBy([{
         column: 'typesort',
         order: 'asc'

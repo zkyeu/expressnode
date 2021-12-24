@@ -12,10 +12,12 @@ class Base{
   constructor(props){
     this.table = props;
   }
-
+  test() {
+    return knex('tbl_types').where('id', '=', '1');
+  }
   // 查找
   all () {
-      return knex(this.table).select().limit(10);
+    return knex(this.table).select().limit(10);
   }
   // select * from `article` left join `articlebody` on `article`.`contentid` = `articlebody`.`aid`
   // 拼接查找
@@ -29,6 +31,7 @@ class Base{
   }
 
   selects (parmas,condition, pages) {
+    console.log(this.table)
     return knex(this.table)
     .column(parmas)
     .select()
