@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-10 15:55:34
- * @LastEditTime: 2021-12-23 15:41:56
+ * @LastEditTime: 2021-12-25 23:06:59
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /expressnode/controllers/user.js
@@ -16,12 +16,11 @@ const articleController = {
   getItem: async (req,res,next) => {
     try{
       let articleData = await item.leftJoinFind(req.query.id);
-      // console.log(articleData);
       res.json({
         errNo: 0,
         message: "操作成功",
         data: articleData
-      })
+      });
     }catch(e){
       res.json({ errNo: -1, message: "操作失败", data: e })
     }

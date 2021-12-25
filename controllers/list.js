@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-10 15:55:34
- * @LastEditTime: 2021-12-24 11:11:01
+ * @LastEditTime: 2021-12-25 23:18:42
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /expressnode/controllers/user.js
@@ -11,11 +11,18 @@ const item = require('../models/article.js');
 const listController = {
   // showUser 获取用户数据并返回到页面
   list: async function(req,res,next){
-    let {pn, rn} = req.body;
+    let {pn, rn, type} = req.body;
     // console.log(pn, rn,req.body);
     try{
+      let condition = {
+        'deleted': 0 // 未删除
+      };
+      
+      if(type) {
+        condition['type'] = type; // 判断文章分类
+      }
       let list = await item
-      .selects(['*'], {'deleted': 0}, {pn:pn, rn:rn })
+      .selects(['*'], { ...condition }, { pn: pn, rn: rn })
       .orderBy([{
         column: 'create_time',
         order: 'desc'
@@ -41,7 +48,12 @@ const listController = {
           ]
         }
       });
-      // console.log(obj);
+      // let list = await item
+      // .selects(['*'], {'deleted': 0}, {pn:pn, rn:rn })
+      // .orderBy([{
+      //   column: 'create_time',
+      //   order: 'desc'
+      // }]);
       res.json({
         errNo: 0,
         message: "操作成功",

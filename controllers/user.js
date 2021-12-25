@@ -1,12 +1,13 @@
 /*
  * @Author: your name
  * @Date: 2021-08-10 15:55:34
- * @LastEditTime: 2021-08-24 11:19:48
+ * @LastEditTime: 2021-12-25 00:15:37
  * @LastEditors: Please set LastEditors
  * @Description: In Item Settings Edit
  * @FilePath: /expressnode/controllers/user.js
  */
 // 引用用户模版数据
+const moment = require('moment'); 
 const Item = require('../models/user.js');
 
 const userController = {
@@ -61,7 +62,9 @@ const userController = {
   },
   insertItem: async (req,res,next) => {
     try{
-      await Item.insert(req.body);
+      let data = req.body;
+      data['create_time'] = moment().format('YYYY-MM-DD HH:mm:ss')
+      await Item.insert(data);
       return res.json({
         errNo: 0,
         message: "添加成功"

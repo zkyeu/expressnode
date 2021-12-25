@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-10 15:49:20
- * @LastEditTime: 2021-12-24 11:18:25
+ * @LastEditTime: 2021-12-25 22:59:52
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /expressnode/models/base.js
@@ -30,8 +30,8 @@ class Base{
     return knex(this.table).where({ id }).first();
   }
 
-  selects (parmas,condition, pages) {
-    console.log(this.table)
+  selects (parmas, condition, pages) {
+    // console.log(this.table)
     return knex(this.table)
     .column(parmas)
     .select()
