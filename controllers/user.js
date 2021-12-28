@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-10 15:55:34
- * @LastEditTime: 2021-12-25 00:15:37
+ * @LastEditTime: 2021-12-28 09:33:07
  * @LastEditors: Please set LastEditors
  * @Description: In Item Settings Edit
  * @FilePath: /expressnode/controllers/user.js
@@ -63,8 +63,10 @@ const userController = {
   insertItem: async (req,res,next) => {
     try{
       let data = req.body;
-      data['create_time'] = moment().format('YYYY-MM-DD HH:mm:ss')
-      await Item.insert(data);
+      let obj = {openid: data.openid, ...data};
+      obj['create_time'] = moment().format('YYYY-MM-DD HH:mm:ss')
+      console.log(data['userinfo']); return;
+      // await Item.insert(obj);
       return res.json({
         errNo: 0,
         message: "添加成功"
