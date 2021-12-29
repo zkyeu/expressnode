@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-10 15:55:34
- * @LastEditTime: 2021-12-28 09:33:07
+ * @LastEditTime: 2021-12-29 16:45:35
  * @LastEditors: Please set LastEditors
  * @Description: In Item Settings Edit
  * @FilePath: /expressnode/controllers/user.js
@@ -11,10 +11,46 @@ const moment = require('moment');
 const Item = require('../models/user.js');
 
 const userController = {
-  // showItem 获取用户数据并返回到页面
-  showItem: async function(req,res,next){
+
+  getItem: async function(req,res,next){
     try{
-      let userData = await Item.all()
+      let userData = await Item.all();
+      res.json({
+        errNo: 0,
+        message: "操作成功",
+        data: userData.map((item,index) => {
+          return {
+            ...item,
+            operate: [
+              {
+                name: '查看',
+                type: 'view',
+              },
+              {
+                name: '编辑',
+                type: 'edit',
+              },
+              {
+                name: '删除',
+                type: 'delete',
+              }
+            ]
+          }
+        })
+      })
+    }catch(e){
+      res.json({ errNo: 1, message: "操作失败", data: e })
+    }
+  },
+  filterItem: async function(req,res,next){
+    let { openid } = req.body;
+    try{
+      let userData = await Item
+      .selects(['*'],{openid: openid},{pn:1,rn:1})
+      .orderBy([{
+        column: 'create_time',
+        order: 'desc'
+      }]);
       res.json({
         errNo: 0,
         message: "操作成功",
@@ -60,13 +96,33 @@ const userController = {
       res.json({ errNo: 1, message: "操作失败", data: e })
     }
   },
+  getWechatUser: async function(req,res,next){
+    console.log('2222222');
+    let {openid} = req.body;
+    try{
+      let objList = await Item
+      .selects(['*'],{openid: openid})
+      .where({'status': 0})
+      .orderBy([{
+        column: 'create_time',
+        order: 'desc'
+      }]);
+      res.json({
+        errNo: 0,
+        message: "获取成功",
+        data: objList[0]
+      })
+    }catch(e){
+      res.json({ errNo: 1, message: "操作失败", data: e })
+    }
+  },
   insertItem: async (req,res,next) => {
     try{
       let data = req.body;
       let obj = {openid: data.openid, ...data};
-      obj['create_time'] = moment().format('YYYY-MM-DD HH:mm:ss')
-      console.log(data['userinfo']); return;
-      // await Item.insert(obj);
+      obj['create_time'] = moment().format('YYYY-MM-DD HH:mm:ss');
+      console.log(obj);
+      await Item.insert(obj);
       return res.json({
         errNo: 0,
         message: "添加成功"
