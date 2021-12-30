@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-10 15:49:20
- * @LastEditTime: 2021-12-25 22:59:52
+ * @LastEditTime: 2021-12-29 16:42:19
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /expressnode/models/base.js
@@ -12,11 +12,10 @@ class Base{
   constructor(props){
     this.table = props;
   }
-  test() {
-    return knex('tbl_types').where('id', '=', '1');
-  }
+ 
   // 查找
   all () {
+    // console.log('all');
     return knex(this.table).select().limit(10);
   }
   // select * from `article` left join `articlebody` on `article`.`contentid` = `articlebody`.`aid`
@@ -31,7 +30,7 @@ class Base{
   }
 
   selects (parmas, condition, pages) {
-    // console.log(this.table)
+    console.log(condition);
     return knex(this.table)
     .column(parmas)
     .select()

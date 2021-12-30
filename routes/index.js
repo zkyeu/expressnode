@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-10 10:21:33
- * @LastEditTime: 2021-12-25 00:14:08
+ * @LastEditTime: 2021-12-29 16:31:06
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /expressnode/routes/index.js
@@ -16,11 +16,11 @@ const baseinfoController = require('../controllers/basicinfo');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express123' });
+  res.render('index', { title: 'Express' });
 });
 
 // 获取信息
-router.get('/apiv1/admins/getuser', userController.getadminItem);
+router.get('/apiv1/getwechatuser', userController.getItem);
 router.get('/apiv1/get/article', articleController.getItem);
 router.post('/apiv1/get/articlelist', listController.list);
 router.get('/apiv1/get/gettypes', typeController.getType);
@@ -40,5 +40,6 @@ router.post('/apiv1/get/deletetype', typeController.deleteType);
 router.post('/apiv1/get/updatetype', typeController.updateItem);
 router.post('/apiv1/get/updateinfo', baseinfoController.update);
 router.post('/apiv1/addwechatuser', userController.insertItem);
+router.post('/apiv1/filteruser', userController.filterItem);
 
 module.exports = router;
