@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-10 15:55:34
- * @LastEditTime: 2021-12-29 16:45:35
+ * @LastEditTime: 2021-12-31 01:04:11
  * @LastEditors: Please set LastEditors
  * @Description: In Item Settings Edit
  * @FilePath: /expressnode/controllers/user.js
@@ -160,9 +160,10 @@ const userController = {
   },
     // 更新分类信息
   updateItem: async (req,res,next) => {
-    const { id } = req.body;
+    const { openid } = req.body;
+    req.body['update_time'] = moment().format('YYYY-MM-DD HH:mm:ss');
     try{
-      await Item.update({'id': id}, req.body);
+      await Item.update({'openid': openid}, req.body);
       res.json({
         errNo: 0,
         message: "编辑成功～"

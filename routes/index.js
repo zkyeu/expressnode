@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-10 10:21:33
- * @LastEditTime: 2021-12-29 16:31:06
+ * @LastEditTime: 2021-12-31 00:40:26
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /expressnode/routes/index.js
@@ -35,7 +35,7 @@ router.post('/apiv1/get/addtypes', typeController.insertType);
 router.post('/apiv1/get/addadminuser', userController.insertItem);
 router.post('/apiv1/get/deleteuser', userController.setItem);
 // router.post('/apiv1/get/deleteuser', userController.deleteItem);
-router.post('/apiv1/get/updateuser', userController.updateItem);
+router.post('/apiv1/updatewechatuser', userController.updateItem);
 router.post('/apiv1/get/deletetype', typeController.deleteType);
 router.post('/apiv1/get/updatetype', typeController.updateItem);
 router.post('/apiv1/get/updateinfo', baseinfoController.update);
