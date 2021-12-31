@@ -1,13 +1,15 @@
 /*
  * @Author: your name
  * @Date: 2021-08-10 15:55:34
- * @LastEditTime: 2021-12-25 23:18:42
+ * @LastEditTime: 2021-12-31 21:08:49
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /expressnode/controllers/user.js
  */
 // 引用用户模版数据
 const item = require('../models/article.js');
+const Util = require('../utils/utils.js');
+// console.log(Util.formatDate('2021-12-23T14:35:46.000Z'));
 const listController = {
   // showUser 获取用户数据并返回到页面
   list: async function(req,res,next){
@@ -30,6 +32,7 @@ const listController = {
 
       let lists = await item.count('title as cnt',{'deleted': 0}).first();
       let obj = list.map((item,index) => {
+        item['create_time'] = Util.formatDate(item['create_time']);
         return {
           ...item,
           operate: [

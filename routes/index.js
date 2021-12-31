@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-10 10:21:33
- * @LastEditTime: 2021-12-31 00:40:26
+ * @LastEditTime: 2022-01-01 03:29:20
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /expressnode/routes/index.js
@@ -13,6 +13,7 @@ const listController = require('../controllers/list');
 const typeController = require('../controllers/types');
 const articleController = require('../controllers/article');
 const baseinfoController = require('../controllers/basicinfo');
+const commentController = require('../controllers/comment');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -40,6 +41,8 @@ router.post('/apiv1/get/deletetype', typeController.deleteType);
 router.post('/apiv1/get/updatetype', typeController.updateItem);
 router.post('/apiv1/get/updateinfo', baseinfoController.update);
 router.post('/apiv1/addwechatuser', userController.insertItem);
+router.post('/apiv1/addcomment', commentController.insertItem);
 router.post('/apiv1/filteruser', userController.filterItem);
+router.post('/apiv1/getcomment', commentController.getItem);
 
 module.exports = router;
