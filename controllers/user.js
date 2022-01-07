@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-10 15:55:34
- * @LastEditTime: 2022-01-06 20:02:37
+ * @LastEditTime: 2022-01-07 10:52:26
  * @LastEditors: Please set LastEditors
  * @Description: In Item Settings Edit
  * @FilePath: /expressnode/controllers/user.js
@@ -121,9 +121,15 @@ const userController = {
   insertItem: async (req,res,next) => {
     try{
       let data = req.body;
-      let obj = {openid: data.openid, ...data};
+      let obj = {}
+      if (data.origin === 'web') {
+        obj = data;
+      } else {
+        obj = {openid: data.openid, ...data};
+      }
       obj['create_time'] = moment().format('YYYY-MM-DD HH:mm:ss');
-      console.log(obj);
+      // console.log(obj);
+      // return;
       await Item.insert(obj);
       return res.json({
         errNo: 0,

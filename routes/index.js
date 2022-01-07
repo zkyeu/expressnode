@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-10 10:21:33
- * @LastEditTime: 2022-01-01 03:29:20
+ * @LastEditTime: 2022-01-06 23:18:10
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /expressnode/routes/index.js
@@ -45,5 +45,6 @@ router.post('/apiv1/addwechatuser', userController.insertItem);
 router.post('/apiv1/addcomment', commentController.insertItem);
 router.post('/apiv1/filteruser', userController.filterItem);
 router.post('/apiv1/getcomment', commentController.getItem);
+router.post('/apiv1/regist', userController.insertItem);
 
 module.exports = router;
