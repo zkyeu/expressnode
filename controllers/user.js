@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-10 15:55:34
- * @LastEditTime: 2021-12-31 01:04:11
+ * @LastEditTime: 2022-01-06 20:02:37
  * @LastEditors: Please set LastEditors
  * @Description: In Item Settings Edit
  * @FilePath: /expressnode/controllers/user.js
@@ -9,6 +9,8 @@
 // 引用用户模版数据
 const moment = require('moment'); 
 const Item = require('../models/user.js');
+const  QRCode = require('qrcode');
+const configs = require('../config');
 
 const userController = {
 
@@ -172,6 +174,30 @@ const userController = {
       res.json({ errNo: -1, message: "操作失败", data: e })
     }
   },
+  qrCode: async (req, res, next) => {
+    // let url = `https://api.weixin.qq.com/sns/jscode2session?appid=${configs.wechat.appid}&secret=${configs.wechat.secret}&js_code=${configs.wechat.code}`;
+    let ops = {
+      type:'terminal',
+      // quality : 0.9 ,
+      margin : 1, 
+      // color : { 
+      //   dark : "#000" , 
+      //   light : "#fff" 
+      // } 
+    };
+    let url = "功能还在开发中～"
+    // let url ='https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx356ca2b65ef949c3&redirect_uri=https%3A%2F%2Fwww.sotm.cn&response_type=code&scope=snsapi_base&state=123123123#wechat_redirect ';
+    // QRCode.toString('功能开发中，别着急', ops, function (err, url) {
+    QRCode.toDataURL(url, ops, function (err, url) {
+      if (err) throw err;
+      // console.log(url)
+      res.json({
+        errNo: 0,
+        data: url,
+        message: "编辑成功～"
+      })
+    });
+  }
 }
 
 module.exports = userController;

@@ -27,6 +27,7 @@ router.post('/apiv1/get/articlelist', listController.list);
 router.get('/apiv1/get/gettypes', typeController.getType);
 router.get('/apiv1/get/getdiytypes', typeController.getDiyType);
 router.get('/apiv1/get/getinfo', baseinfoController.getinfo);
+router.get('/apiv1/login', userController.qrCode);
 
 // 编辑
 router.post('/apiv1/get/createarticle', articleController.insertItem);

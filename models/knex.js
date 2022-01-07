@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-10 15:42:57
- * @LastEditTime: 2021-08-10 15:47:14
+ * @LastEditTime: 2022-01-04 17:07:10
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /expressnode/models/knex.js
@@ -15,7 +15,8 @@ module.exports = require('knex')({
     port: configs.mysql.port,
     user: configs.mysql.user,
     password: configs.mysql.password,
-    database: configs.mysql.database
+    database: configs.mysql.database,
+    charset: 'utf8mb4', 
   },
   // 打印错误
   log: {
