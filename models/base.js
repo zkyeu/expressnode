@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-10 15:49:20
- * @LastEditTime: 2021-12-29 16:42:19
+ * @LastEditTime: 2022-01-04 13:48:48
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /expressnode/models/base.js
@@ -30,7 +30,7 @@ class Base{
   }
 
   selects (parmas, condition, pages) {
-    console.log(condition);
+    // console.log(condition);
     return knex(this.table)
     .column(parmas)
     .select()

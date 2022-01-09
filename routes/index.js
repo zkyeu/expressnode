@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-10 10:21:33
- * @LastEditTime: 2021-12-29 16:31:06
+ * @LastEditTime: 2022-01-06 23:18:10
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /expressnode/routes/index.js
@@ -13,6 +13,7 @@ const listController = require('../controllers/list');
 const typeController = require('../controllers/types');
 const articleController = require('../controllers/article');
 const baseinfoController = require('../controllers/basicinfo');
+const commentController = require('../controllers/comment');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -26,6 +27,7 @@ router.post('/apiv1/get/articlelist', listController.list);
 router.get('/apiv1/get/gettypes', typeController.getType);
 router.get('/apiv1/get/getdiytypes', typeController.getDiyType);
 router.get('/apiv1/get/getinfo', baseinfoController.getinfo);
+router.get('/apiv1/login', userController.qrCode);
 
 // 编辑
 router.post('/apiv1/get/createarticle', articleController.insertItem);
@@ -35,11 +37,14 @@ router.post('/apiv1/get/addtypes', typeController.insertType);
 router.post('/apiv1/get/addadminuser', userController.insertItem);
 router.post('/apiv1/get/deleteuser', userController.setItem);
 // router.post('/apiv1/get/deleteuser', userController.deleteItem);
-router.post('/apiv1/get/updateuser', userController.updateItem);
+router.post('/apiv1/updatewechatuser', userController.updateItem);
 router.post('/apiv1/get/deletetype', typeController.deleteType);
 router.post('/apiv1/get/updatetype', typeController.updateItem);
 router.post('/apiv1/get/updateinfo', baseinfoController.update);
 router.post('/apiv1/addwechatuser', userController.insertItem);
+router.post('/apiv1/addcomment', commentController.insertItem);
 router.post('/apiv1/filteruser', userController.filterItem);
+router.post('/apiv1/getcomment', commentController.getItem);
+router.post('/apiv1/regist', userController.insertItem);
 
 module.exports = router;
