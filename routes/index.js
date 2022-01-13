@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-10 10:21:33
- * @LastEditTime: 2022-01-06 23:18:10
+ * @LastEditTime: 2022-01-08 11:50:45
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /expressnode/routes/index.js
@@ -14,6 +14,7 @@ const typeController = require('../controllers/types');
 const articleController = require('../controllers/article');
 const baseinfoController = require('../controllers/basicinfo');
 const commentController = require('../controllers/comment');
+const uploadController = require('../controllers/uploadfile');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -45,5 +46,6 @@ router.post('/apiv1/addcomment', commentController.insertItem);
 router.post('/apiv1/filteruser', userController.filterItem);
 router.post('/apiv1/getcomment', commentController.getItem);
 router.post('/apiv1/regist', userController.insertItem);
+router.post('/apiv1/uploadfile', uploadController.item);
 
 module.exports = router;
