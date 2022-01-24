@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2022-01-08 11:11:55
- * @LastEditTime: 2022-01-08 11:48:46
+ * @LastEditTime: 2022-01-14 21:07:42
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: /expressnode/controllers/uploadfile.js
@@ -38,10 +38,6 @@ const uploadController = {
           msg: src,
         });
       });
-
-
-
-
       
       res.json({
         errNo: 0,
@@ -49,7 +45,7 @@ const uploadController = {
         data: {a:1}
       })
     }catch(e){
-      res.json({ errNo: 1, message: "操作失败", data: e })
+      res.json({ errNo: 1, message: "操作失败～", data: e })
     }
   }
 }

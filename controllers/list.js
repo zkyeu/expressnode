@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-10 15:55:34
- * @LastEditTime: 2022-01-05 10:44:01
+ * @LastEditTime: 2022-01-24 23:54:17
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /expressnode/controllers/user.js
@@ -11,15 +11,15 @@ const item = require('../models/article.js');
 const Util = require('../utils/utils.js');
 const listController = {
   list: async function(req,res,next){
-    let {pn, rn, type} = req.body;
+    let {pn, rn, id} = req.body;
     // console.log(pn, rn,req.body);
     try{
       let condition = {
         'deleted': 0 // 未删除
       };
       
-      if(type) {
-        condition['type'] = type; // 判断文章分类
+      if(id) {
+        condition['type'] = id; // 判断文章分类
       }
       let list = await item
       .selects(['*'], { ...condition }, { pn: pn, rn: rn })
