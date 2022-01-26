@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-12-31 20:47:38
- * @LastEditTime: 2021-12-31 21:06:43
+ * @LastEditTime: 2022-01-26 15:25:42
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: /expressnode/utils/utils.js
@@ -20,14 +20,16 @@ const formatDate = (v) => {
   const y = date.getFullYear();
   let m = date.getMonth() + 1;
   m = m < 10 ? `0${m}` : m;
-  let d= date.getDate();
+  let d = date.getDate();
   d = d < 10 ? `0${d}` : d;
-  let h= date.getHours();
+  let h = date.getHours();
   h = h < 10 ? `0${h}` : h;
-  let minute= date.getMinutes();
+  let minute = date.getMinutes();
   minute = minute < 10 ? `0${minute}` : minute;
-  let second= date.getSeconds();
+  let second = date.getSeconds();
   second = second < 10 ? `0${second}` : second;
   return `${y}-${m}-${d} ${h}:${minute}:${second}`;
-}
-module.exports = {formatDate};
+};
+
+const baseUrl = 'https://www.sotm.cn/';
+module.exports = { formatDate, baseUrl };
