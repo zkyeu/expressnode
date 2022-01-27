@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2022-01-08 11:11:55
- * @LastEditTime: 2022-01-26 15:53:01
+ * @LastEditTime: 2022-01-27 11:11:56
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: /expressnode/controllers/uploadfile.js
@@ -17,7 +17,7 @@ const uploadController = {
       //设置编辑
       form.encoding = 'utf-8';
       //设置图片存储路径
-      // form.uploadDir = '../sotm/uploads/';
+      form.uploadDir = '../sotm/uploads/';
       form.keepExtensions = true; //保留后缀
       form.maxFieldsSize = 2 * 1024 * 1024; //内存大小
       form.maxFilesSize = 5 * 1024 * 1024; //文件字节大小限制，超出会报错err
