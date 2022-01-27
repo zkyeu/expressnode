@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-10 10:21:33
- * @LastEditTime: 2021-08-10 10:44:22
+ * @LastEditTime: 2022-01-27 11:37:21
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /expressnode/app.js
@@ -20,7 +20,8 @@ var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+// app.set('view engine', 'jade');
+app.set('view engine', 'pug');
 
 app.use(morgan('dev'));
 app.use(express.json());
@@ -32,7 +33,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
@@ -47,7 +48,7 @@ app.use(function(req, res, next) {
 //   res.render('error');
 // });
 const _errorHandler = (err, req, res, next) => {
-  logger.error(`${req.method} ${req.originalUrl}` + err.message );
+  logger.error(`${req.method} ${req.originalUrl}` + err.message);
   const errorMsg = err.message;
   res.status(err.status || 500).json({
     code: -1,
@@ -55,7 +56,7 @@ const _errorHandler = (err, req, res, next) => {
     message: errorMsg,
     data: {}
   });
-}
+};
 app.use(_errorHandler);
 
 module.exports = app;
