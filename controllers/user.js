@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-10 15:55:34
- * @LastEditTime: 2022-01-29 01:22:04
+ * @LastEditTime: 2022-01-30 17:40:45
  * @LastEditors: Please set LastEditors
  * @Description: In Item Settings Edit
  * @FilePath: /expressnode/controllers/user.js
@@ -133,36 +133,38 @@ const userController = {
         obj = { openid: data.openid, ...data };
       }
       obj['create_time'] = moment().format('YYYY-MM-DD HH:mm:ss');
-      // 判断数据内是否有该用户，如果有则返回提示，没有则进行注册
-      let userDatas = await Item.find({
+
+      let isExit = Item.find({
         key: 'userName',
         value: data.userName
       });
-      // console.log(userData.userName.length);
-      if (userDatas.userName) {
+      console.log('-->', data.userName);
+      console.log(isExit.userName);
+      return;
+      if (data.userNamea) {
         return res.json({
           errNo: 1,
           message: '用户名称已存在，请直接登录或更换用户名注册'
         });
       } else {
-        console.log('a');
-        // bcrypt.hash(req.body.password, 10, (err, hash) => {
-        //   if (err) {
-        //     return res.json({
-        //       errNo: 500,
-        //       message: err
-        //     });
-        //   } else {
-        //     obj['password'] = hash;
-        //     Item.insert(obj);
-        //     return res.json({
-        //       errNo: 0,
-        //       message: '添加成功'
-        //     });
-        //   }
-        // });
+        bcrypt.hash(req.body.password, 10, async (err, hash) => {
+          if (err) {
+            return res.json({
+              errNo: 500,
+              message: err
+            });
+          } else {
+            obj['password'] = hash;
+            await Item.insert(obj);
+            return res.json({
+              errNo: 10,
+              message: '添加成功'
+            });
+          }
+        });
       }
     } catch (e) {
+      console.log('error');
       res.json({ errNo: 401, message: '操作失败', data: e });
     }
   },
@@ -212,10 +214,14 @@ const userController = {
 
   login: async (req, res, next) => {
     let data = req.body;
-    console.log(data);
+    // console.log(data);
     // web || code
     if (data.type === 'web') {
-      let user = await Item.selects(['*'], { userName: userName }, { pn: 1, rn: 1 });
+      console.log('123');
+      // let user = await Item.find({
+      //   key: 'userName',
+      //   value: data.userName
+      // });
       console.log(user);
     } else {
       // let url = `https://api.weixin.qq.com/sns/jscode2session?appid=${configs.wechat.appid}&secret=${configs.wechat.secret}&js_code=${configs.wechat.code}`;
