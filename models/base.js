@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-10 15:49:20
- * @LastEditTime: 2022-02-11 11:53:06
+ * @LastEditTime: 2022-03-07 21:20:23
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /expressnode/models/base.js
@@ -42,6 +42,13 @@ class Base {
       .offset(pages.rn * (pages.pn - 1));
   }
 
+  searchWord(fnWord, pages) {
+    return knex(this.table)
+      .where(fnWord)
+      .limit(pages.rn)
+      .offset(pages.rn * (pages.pn - 1));
+  }
+
   // 新增
   insert(params) {
     return knex(this.table).insert(params);
@@ -64,8 +71,10 @@ class Base {
   delete(id) {
     return knex(this.table).where('id', '=', id).del();
   }
+
   // 计数
   count(parmas, condition) {
+    console.log(condition);
     return knex(this.table).count(parmas).where(condition);
   }
 }
